@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import 'favorites.dart';
 import 'favorites.dart';
 
 class Start extends StatelessWidget {
@@ -28,10 +30,47 @@ class Start extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Favorites()));
+                          builder: (context) => FutureBuilder(
+                                future: Future.delayed(
+                                    const Duration(seconds: 5),
+                                    () => "Data Loaded"),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Scaffold(
+                                      backgroundColor: const Color(0xff081b25),
+                                      body: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            LoadingAnimationWidget.inkDrop(
+                                              color: const Color(0xff2F80ED),
+                                              size: 50,
+                                            ),
+                                            const SizedBox(height: 20),
+                                            const Padding(
+                                                padding: EdgeInsets.all(10)),
+                                            const Text(
+                                              'Loading ...',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 22.0,
+                                                  fontFamily: 'Hubballi'),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return const Favorites();
+                                  }
+                                },
+                              )));
                 },
                 child: Container(
                   height: 50,

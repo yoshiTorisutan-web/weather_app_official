@@ -57,12 +57,12 @@ class _DetailPageState extends State<DetailPage> {
       backgroundColor: const Color(0xff081b25),
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(left: 30.0, top: 20.0),
+          padding: const EdgeInsets.only(left: 30.0, top: 25.0),
           child: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.of(context).pop(
-                  MaterialPageRoute(builder: (context) => const Home()));
+              Navigator.of(context)
+                  .pop(MaterialPageRoute(builder: (context) => const Home()));
             },
           ),
         ),
@@ -71,7 +71,7 @@ class _DetailPageState extends State<DetailPage> {
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 25.0),
+              padding: EdgeInsets.only(top: 30.0),
               child: Icon(
                 Icons.calendar_today,
                 color: Colors.white,
@@ -79,7 +79,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 25.0, left: 8.0),
+              padding: EdgeInsets.only(top: 32.0, left: 8.0),
               child: Text(
                 'Forecasts',
                 style: TextStyle(
@@ -96,7 +96,7 @@ class _DetailPageState extends State<DetailPage> {
         elevation: 0.0,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 40.0, top: 20.0),
+            padding: const EdgeInsets.only(right: 40.0, top: 25.0),
             child: IconButton(
                 onPressed: () {
                   showDialog(
@@ -153,7 +153,7 @@ class _DetailPageState extends State<DetailPage> {
                 clipBehavior: Clip.none,
                 children: [
                   Positioned(
-                    top: -150,
+                    top: -130,
                     right: 30,
                     left: 20,
                     child: Container(
@@ -163,10 +163,7 @@ class _DetailPageState extends State<DetailPage> {
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.center,
-                          colors: [
-                            Color.fromRGBO(81, 74, 157, 1.0),
-                            Color.fromRGBO(36, 198, 220, 1.0)
-                          ],
+                          colors: [Color(0xff2F80ED), Color(0xff56CCF2)],
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -182,9 +179,9 @@ class _DetailPageState extends State<DetailPage> {
                         clipBehavior: Clip.none,
                         children: [
                           Positioned(
-                            width: 100,
-                            left: 30,
-                            top: 50,
+                            width: 90,
+                            left: 40,
+                            top: 60,
                             // ignore: prefer_interpolation_to_compose_strings
                             child: Image.asset("assets/" +
                                 getForecastWeather(0)["weatherIcon"]),
@@ -204,7 +201,7 @@ class _DetailPageState extends State<DetailPage> {
                               )),
                           Positioned(
                             bottom: 20,
-                            left: 35,
+                            left: 15,
                             child: Container(
                               width: size.width * .8,
                               padding:
@@ -288,8 +285,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 getForecastWeather(
                                                     0)["forecastDate"],
                                                 style: const TextStyle(
-                                                  color: Color.fromRGBO(
-                                                      81, 74, 157, 1.0),
+                                                  color: Color(0xff2F80ED),
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -435,8 +431,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 getForecastWeather(
                                                     1)["forecastDate"],
                                                 style: const TextStyle(
-                                                  color: Color.fromRGBO(
-                                                      81, 74, 157, 1.0),
+                                                  color: Color(0xff2F80ED),
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -582,8 +577,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 getForecastWeather(
                                                     2)["forecastDate"],
                                                 style: const TextStyle(
-                                                  color: Color.fromRGBO(
-                                                      81, 74, 157, 1.0),
+                                                  color: Color(0xff2F80ED),
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),

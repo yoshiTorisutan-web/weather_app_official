@@ -114,7 +114,7 @@ class _HomePageState extends State<Home> {
       body: Container(
         width: size.width,
         height: size.height,
-        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+        padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
         color: _constants.primaryColor.withOpacity(.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -406,10 +406,8 @@ class _HomePageState extends State<Home> {
                                 .toString();
                         return Container(
                           padding: const EdgeInsets.symmetric(vertical: 15),
-                          margin: const EdgeInsets.only(right: 20),
-                          width: currentHour == forecastHour
-                            ? 70
-                            : 65,
+                          margin: const EdgeInsets.only(right: 15),
+                          width: 65,
                           decoration: BoxDecoration(
                               color: currentHour == forecastHour
                                   ? const Color(0xff2F80ED)
@@ -446,7 +444,7 @@ class _HomePageState extends State<Home> {
                               ),
                               Image.asset(
                                 'assets/$forecastWeatherIcon',
-                                width: 35,
+                                width: 30,
                               ),
                               Text(
                                 forecastTime,
