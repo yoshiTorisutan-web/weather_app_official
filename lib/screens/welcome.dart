@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
-import 'favorites.dart';
 import 'favorites.dart';
 
 class Start extends StatelessWidget {
@@ -67,7 +65,7 @@ class Start extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    return const Favorites();
+                                    return const Favorites(selectedCity: '',);
                                   }
                                 },
                               )));

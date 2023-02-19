@@ -62,7 +62,7 @@ class _CitiesMapState extends State<CitiesMap> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const Home()));
+                MaterialPageRoute(builder: (context) => const Home(selectedCity: '',)));
           },
           backgroundColor: const Color.fromARGB(197, 0, 0, 0),
           child: const Icon(Icons.keyboard_return,

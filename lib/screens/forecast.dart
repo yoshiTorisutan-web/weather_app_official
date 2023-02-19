@@ -62,7 +62,7 @@ class _DetailPageState extends State<DetailPage> {
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.of(context)
-                  .pop(MaterialPageRoute(builder: (context) => const Home()));
+                  .pop(MaterialPageRoute(builder: (context) => const Home(selectedCity: '',)));
             },
           ),
         ),

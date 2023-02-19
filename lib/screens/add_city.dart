@@ -1,7 +1,27 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:weather_app/repositories/city_repositories.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:weather_app/screens/favorites.dart';
 
-import '../models/localisation.dart';
+String apiKey = '9d54e695bf4b4803aee230828231202';
+
+Future<List<String>> fetchCities(String query) async {
+  final url = Uri.parse(
+      'https://api.weatherapi.com/v1/search.json?key=$apiKey&q=$query');
+  final response = await http.get(url);
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body) as List<dynamic>;
+    final cities = data
+        .map((city) => '${city['name']}, ${city['region']}, ${city['country']}')
+        .toList()
+        .cast<String>();
+    return cities;
+  } else {
+    throw Exception('Failed to load cities');
+  }
+}
 
 class SearchCity extends StatefulWidget {
   const SearchCity({super.key});
@@ -11,24 +31,78 @@ class SearchCity extends StatefulWidget {
 }
 
 class _SearchCityState extends State<SearchCity> {
-  List<Localisation> _localisations = [];
+  List<String> _cities = [];
+  late stt.SpeechToText _speech;
+  String _text = '';
+  bool _isListening = false;
+  // ignore: prefer_final_fields
+  TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _speech = stt.SpeechToText();
+  }
+
+  void _listen() async {
+    if (!_isListening) {
+      bool available = await _speech.initialize();
+      if (available) {
+        setState(() {
+          _isListening = true;
+        });
+        _speech.listen(
+          onResult: (result) => setState(() {
+            _text = result.recognizedWords;
+            _searchController.text = _text;
+          }),
+        );
+      }
+    }
+  }
+
+  void _stop() {
+    if (_isListening) {
+      _speech.stop();
+      setState(() {
+        _isListening = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Find a place'),
+        elevation: 0,
+        title: const Text(
+          "Add a city",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Hubballi',
+              color: Colors.white),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.mic,
+            icon: const Icon(Icons.mic),
+            color: Colors.white,
+            padding: const EdgeInsets.all(10.0),
+            onPressed: () => _listen(),
+          ),
+          Visibility(
+            visible: _isListening,
+            child: IconButton(
+              icon: const Icon(Icons.stop),
               color: Colors.white,
+              padding: const EdgeInsets.all(10.0),
+              onPressed: () => _stop(),
             ),
-            onPressed: () {},
-          )
+          ),
         ],
       ),
       body: Container(
@@ -44,17 +118,10 @@ class _SearchCityState extends State<SearchCity> {
                 margin: const EdgeInsets.only(top: 100, left: 25, right: 25),
                 child: TextField(
                   style: const TextStyle(color: Colors.white),
+                  controller: _searchController,
                   onChanged: (value) async {
-                    if (value.length >= 3) {
-                      final LocalisationRepository localisationRepository =
-                          LocalisationRepository();
-                      List<Localisation> localisations =
-                          await localisationRepository
-                              .fetchLocalisations(value);
-                      setState(() {
-                        _localisations = localisations;
-                      });
-                    }
+                    _cities = await fetchCities(value);
+                    setState(() {});
                   },
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.location_on,
@@ -96,18 +163,30 @@ class _SearchCityState extends State<SearchCity> {
                     top: 15, left: 25, right: 25, bottom: 100),
                 child: ListView.separated(
                   padding: EdgeInsets.zero,
-                  itemCount: _localisations.length,
+                  itemCount: _cities.length,
                   separatorBuilder: (BuildContext context, int index) =>
                       const Divider(height: 0),
                   itemBuilder: (BuildContext context, int index) {
-                    final Localisation localisation = _localisations[index];
+                    final city = _cities[index];
+                    final cityData = city.split(', ');
+                    final cityName = cityData[0];
+                    final countryName = cityData[2];
                     return ListTile(
-                      title: Text(localisation.name,
-                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
-                      subtitle: Text(localisation.country,
-                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                      title: Text(cityName,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255))),
+                      subtitle: Text(countryName,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 12)),
                       onTap: () {
-                        Navigator.of(context).pop(localisation);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                Favorites(selectedCity: cityName),
+                          ),
+                        );
                       },
                     );
                   },

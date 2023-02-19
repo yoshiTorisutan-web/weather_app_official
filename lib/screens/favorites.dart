@@ -1,24 +1,12 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../constants.dart';
 import '../widgets/drawer.dart';
-import '../widgets/weather_item.dart';
 import 'add_city.dart';
 import 'home.dart';
 
-class Favorites extends StatefulWidget {
-  // ignore: prefer_typing_uninitialized_variables
-  final dailyForecastWeather;
+class Favorites extends StatelessWidget {
+  final String selectedCity;
 
-  const Favorites({Key? key, this.dailyForecastWeather}) : super(key: key);
-
-  @override
-  State<Favorites> createState() => _FavoritesState();
-}
-
-class _FavoritesState extends State<Favorites> {
-  final Constants _constants = Constants();
+  const Favorites({Key? key, required this.selectedCity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +20,29 @@ class _FavoritesState extends State<Favorites> {
     } else if (now.hour >= 6 && now.hour < 19) {
       image = "assets/soleil.png";
     } else {
-      image = "assets/soleil.jpg";
+      image = "assets/pleine-lune.png";
     }
 
     return Scaffold(
       backgroundColor: const Color(0xff081b25),
       appBar: AppBar(
+        title: const Text(
+          "Manage cities",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Hubballi',
+              color: Colors.white),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
               Icons.add,
               color: Colors.white,
             ),
+            padding: const EdgeInsets.all(20.0),
             onPressed: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const SearchCity()));
@@ -119,71 +117,71 @@ class _FavoritesState extends State<Favorites> {
                       ],
                     ),
                   ),
-                  Positioned(
-                    top: 190,
-                    left: 95,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        const Text(
-                          "Favorites Places ❤️",
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Hubballi',
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(top: 210.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Text(
+                  "❤️ Favorites Places ❤️",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Hubballi',
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
           ListView.builder(
             itemCount: 1,
+            padding: const EdgeInsets.only(top: 240),
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 color: const Color(0xff56CCF2),
                 elevation: 5,
                 margin: const EdgeInsets.only(
-                    top: 250, left: 30, right: 30, bottom: 30),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  contentPadding: const EdgeInsets.only(
-                      top: 5, bottom: 5, right: 15, left: 15),
-                  leading: const CircleAvatar(
-                      backgroundColor: Color.fromARGB(0, 0, 0, 0),
-                      child: Icon(Icons.location_on,
-                          color: Color.fromARGB(255, 254, 254, 254))),
-                  title: const Text(
-                    "Angers",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Hubballi',
-                    ),
-                  ),
-                  subtitle: const Text(
-                    "France",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Hubballi',
-                    ),
-                  ),
-                  trailing: IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const Home()));
-                      },
-                      icon: const Icon(Icons.chevron_right,
-                          color: Color.fromARGB(255, 255, 255, 255), size: 30)),
-                ),
+                    top: 10, left: 30, right: 30, bottom: 10),
+                child: selectedCity.isEmpty
+                    ? Container()
+                    : ListTile(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0)),
+                        contentPadding: const EdgeInsets.only(
+                            top: 5, bottom: 5, right: 15, left: 15),
+                        leading: const CircleAvatar(
+                            backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                            child: Icon(Icons.location_on,
+                                color: Color.fromARGB(255, 254, 254, 254))),
+                        title: Text(
+                          selectedCity,
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Hubballi',
+                          ),
+                        ),
+                        trailing: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Home(
+                                            selectedCity: selectedCity,
+                                          ))); // Navigue vers la page WeatherPage
+                            },
+                            icon: const Icon(Icons.chevron_right,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                size: 30)),
+                      ),
               );
             },
           )

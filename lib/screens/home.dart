@@ -12,7 +12,9 @@ import 'forecast.dart';
 import 'map_cities.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final String selectedCity;
+
+  const Home({Key? key, required this.selectedCity}) : super(key: key);
 
   @override
   State<Home> createState() => _HomePageState();
@@ -43,10 +45,10 @@ class _HomePageState extends State<Home> {
   String searchWeatherAPI =
       "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY&days=7&q=";
 
-  void fetchWeatherData(String searchText) async {
+  void fetchWeatherData(String selectedCity) async {
     try {
       var searchResult =
-          await http.get(Uri.parse(searchWeatherAPI + searchText));
+          await http.get(Uri.parse(searchWeatherAPI + selectedCity));
 
       final weatherData = Map<String, dynamic>.from(
           json.decode(searchResult.body) ?? 'No data');
@@ -98,7 +100,7 @@ class _HomePageState extends State<Home> {
 
   @override
   void initState() {
-    fetchWeatherData(location);
+    fetchWeatherData(widget.selectedCity);
     super.initState();
   }
 
@@ -123,21 +125,19 @@ class _HomePageState extends State<Home> {
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               height: size.height * .7,
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [Color(0xff2F80ED), Color(0xff56CCF2)],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    stops: [0.2, 0.85]),
-                borderRadius: BorderRadius.circular(20),
-                // ignore: prefer_const_literals_to_create_immutables
-                boxShadow: [
-                  const BoxShadow(
-                    color:Color.fromARGB(100, 47, 129, 237),
-                    blurRadius: 3,
-                    offset: Offset(0, 10.0)
-                  )
-                ]
-              ),
+                  gradient: const LinearGradient(
+                      colors: [Color(0xff2F80ED), Color(0xff56CCF2)],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      stops: [0.2, 0.85]),
+                  borderRadius: BorderRadius.circular(20),
+                  // ignore: prefer_const_literals_to_create_immutables
+                  boxShadow: [
+                    const BoxShadow(
+                        color: Color.fromARGB(100, 47, 129, 237),
+                        blurRadius: 3,
+                        offset: Offset(0, 10.0))
+                  ]),
               child: Column(
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -150,9 +150,9 @@ class _HomePageState extends State<Home> {
                           icon: const Icon(Icons.favorite_border,
                               size: 30, color: Colors.white),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
+                            Navigator.of(context).pop(
                                 MaterialPageRoute(
-                                    builder: (context) => const Favorites()));
+                                    builder: (context) => const Favorites(selectedCity: '',)));
                           }),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -167,9 +167,10 @@ class _HomePageState extends State<Home> {
                           Text(
                             location,
                             style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                            ),
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Hubballi',
+                                fontSize: 30),
                           ),
                           IconButton(
                             onPressed: () {
@@ -412,7 +413,9 @@ class _HomePageState extends State<Home> {
                               color: currentHour == forecastHour
                                   ? const Color(0xff2F80ED)
                                   : const Color.fromARGB(255, 5, 16, 21),
-                              border: Border.all(color: const Color.fromARGB(21, 255, 255, 255)),
+                              border: Border.all(
+                                  color:
+                                      const Color.fromARGB(21, 255, 255, 255)),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(50))),
                           child: Column(
