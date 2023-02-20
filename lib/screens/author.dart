@@ -9,7 +9,7 @@ class Author extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Créateur'),
+        title: const Text('Creator'),
         backgroundColor: Colors.transparent,
       ),
       body: Container(
@@ -28,7 +28,7 @@ class Author extends StatelessWidget {
               SizedBox(
                 height: 60,
               ),
-              Text('Réalisé par Tristan.',
+              Text('Directed by Tristan.',
                   style: TextStyle(
                       color: Colors.white,
                       fontStyle: FontStyle.italic,

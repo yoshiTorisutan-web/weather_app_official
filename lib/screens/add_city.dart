@@ -144,7 +144,7 @@ class _SearchCityState extends State<SearchCity> {
                         fontStyle: FontStyle.italic,
                         fontFamily: 'Hubballi',
                         fontSize: 20),
-                    labelText: 'Lieu',
+                    labelText: 'City',
                     labelStyle: const TextStyle(
                         color: Colors.white,
                         fontStyle: FontStyle.italic,
@@ -201,22 +201,22 @@ class _SearchCityState extends State<SearchCity> {
           showDialog(
               context: context,
               builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Infos Recherche Lieu',
+                    title: const Text('Search info location',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
                             fontFamily: 'Hubballi')),
                     content: const Text(
-                        'Découvrer la météo de n\'importe quelle ville de France, d\'Europe et du Monde (ex : Paris, Madrid, New-York).',
+                        'Discover the weather of any city in France, Europe and the World (ex: Paris, Madrid, New-York).',
                         style: TextStyle(
                             fontStyle: FontStyle.italic,
                             fontFamily: 'Hubballi',
                             fontSize: 20)),
                     actions: <Widget>[
                       TextButton(
-                        onPressed: () => Navigator.pop(context, 'Compris'),
+                        onPressed: () => Navigator.pop(context, 'Understood'),
                         child: const Text(
-                          'Compris',
+                          'Understood',
                           style: TextStyle(
                               color: Colors.blue,
                               fontFamily: 'Hubballi',

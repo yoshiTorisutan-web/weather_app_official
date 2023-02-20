@@ -40,7 +40,7 @@ class MainDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.info, color: Colors.white),
               title: const Text(
-                'Lieux favoris',
+                'Favourite places',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -57,7 +57,7 @@ class MainDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.settings, color: Colors.white),
               title: const Text(
-                'Paramètres',
+                'Settings',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -72,7 +72,7 @@ class MainDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.person, color: Colors.white),
               title: const Text(
-                'Créateur',
+                'Creator',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,

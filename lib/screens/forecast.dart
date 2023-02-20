@@ -102,13 +102,13 @@ class _DetailPageState extends State<DetailPage> {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Informations détaillées météo',
+                            title: const Text('Detailed weather information',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
                                     fontFamily: 'Hubballi')),
                             content: const Text(
-                                'Découvrer la météo en détail de la ville que vous avez sélectionnée : temps et température (min et max) pour les 3 jours qui viennent.',
+                                'Find out the detailed weather forecast for the city you have selected: weather and temperature (min and max) for the next 3 days.',
                                 style: TextStyle(
                                     fontStyle: FontStyle.italic,
                                     fontFamily: 'Hubballi',
@@ -116,9 +116,9 @@ class _DetailPageState extends State<DetailPage> {
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () =>
-                                    Navigator.pop(context, 'Compris'),
+                                    Navigator.pop(context, 'Understood'),
                                 child: const Text(
-                                  'Compris',
+                                  'Understood',
                                   style: TextStyle(
                                       color: Colors.blue,
                                       fontFamily: 'Hubballi',

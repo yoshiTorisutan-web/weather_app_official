@@ -1,74 +1,89 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
-import 'home.dart';
+class MapScreen extends StatefulWidget {
+  final String selectedCity; // Ville sélectionnée depuis une autre page
 
-void main() {
-  runApp(const CitiesMap());
-}
-
-class CitiesMap extends StatefulWidget {
-  const CitiesMap({Key? key}) : super(key: key);
+  const MapScreen({super.key, required this.selectedCity});
 
   @override
   // ignore: library_private_types_in_public_api
-  _CitiesMapState createState() => _CitiesMapState();
+  _MapScreenState createState() => _MapScreenState();
 }
 
-class _CitiesMapState extends State<CitiesMap> {
+class _MapScreenState extends State<MapScreen> {
+  LatLng? cityLocation;
+
+  void getCityLocation() async {
+    String cityName = widget.selectedCity;
+
+    final url = Uri.parse(
+        'https://nominatim.openstreetmap.org/search?q=$cityName&format=json');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      if (data.isNotEmpty) {
+        double lat = double.parse(data[0]['lat']);
+        double lon = double.parse(data[0]['lon']);
+        cityLocation = LatLng(lat, lon);
+        setState(() {});
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    getCityLocation();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        extendBodyBehindAppBar: true,
-        body: Center(
-          child: SizedBox(
-            child: FlutterMap(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xff081b25),
+        title: Text(widget.selectedCity,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Hubballi',
+                color: Colors
+                    .white)), // Afficher le nom de la ville sélectionnée dans la barre d'applications
+      ),
+      body: (cityLocation == null)
+          ? const Center(child: CircularProgressIndicator())
+          : FlutterMap(
               options: MapOptions(
-                center: LatLng(47.478419, -0.563166),
-                zoom: 13,
+                center: cityLocation,
+                zoom: 10.0,
               ),
               children: [
                 TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+                  urlTemplate:
+                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: const ['a', 'b', 'c'],
                 ),
                 MarkerLayer(
                   markers: [
-                    Marker(
-                      width: 45.0,
-                      height: 45.0,
-                      point: LatLng(47.478419, -0.563166),
-                      builder: (context) => IconButton(
-                        icon: const Icon(Icons.location_on),
-                        color: Colors.red,
-                        iconSize: 45.0,
-                        onPressed: () {},
+                    if (cityLocation != null)
+                      Marker(
+                        point: cityLocation!,
+                        builder: (ctx) => const Icon(Icons.location_on,
+                            color: Colors.red, size: 20),
                       ),
-                    )
+                    if (cityLocation == null)
+                      Marker(
+                        point:
+                            LatLng(0.0, 0.0), // Position du marqueur par défaut
+                        builder: (ctx) => const CircularProgressIndicator(),
+                      ),
                   ],
-                )
+                ),
               ],
             ),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const Home(selectedCity: '',)));
-          },
-          backgroundColor: const Color.fromARGB(197, 0, 0, 0),
-          child: const Icon(Icons.keyboard_return,
-              color: Color.fromARGB(255, 255, 255, 255)),
-        ),
-      ),
     );
   }
 }

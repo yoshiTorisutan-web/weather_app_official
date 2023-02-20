@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:weather_app/screens/map_cities.dart';
 import '../constants.dart';
 import '../widgets/weather_item.dart';
 import 'favorites.dart';
 import 'forecast.dart';
-import 'map_cities.dart';
 
 class Home extends StatefulWidget {
   final String selectedCity;
@@ -110,6 +109,7 @@ class _HomePageState extends State<Home> {
         overlays: SystemUiOverlay.values);
 
     Size size = MediaQuery.of(context).size;
+    String selectedCity = widget.selectedCity;
 
     return Scaffold(
       backgroundColor: const Color(0xff081b25),
@@ -150,9 +150,10 @@ class _HomePageState extends State<Home> {
                           icon: const Icon(Icons.favorite_border,
                               size: 30, color: Colors.white),
                           onPressed: () {
-                            Navigator.of(context).pop(
-                                MaterialPageRoute(
-                                    builder: (context) => const Favorites(selectedCity: '',)));
+                            Navigator.of(context).pop(MaterialPageRoute(
+                                builder: (context) => const Favorites(
+                                      selectedCity: '',
+                                    )));
                           }),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -172,78 +173,6 @@ class _HomePageState extends State<Home> {
                                 fontFamily: 'Hubballi',
                                 fontSize: 30),
                           ),
-                          IconButton(
-                            onPressed: () {
-                              _cityController.clear();
-                              showMaterialModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => SingleChildScrollView(
-                                        controller:
-                                            ModalScrollController.of(context),
-                                        child: Container(
-                                          height: size.height * .2,
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                            vertical: 10,
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                width: 70,
-                                                child: Divider(
-                                                  thickness: 3.5,
-                                                  color:
-                                                      _constants.primaryColor,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              TextField(
-                                                onChanged: (searchText) {
-                                                  fetchWeatherData(searchText);
-                                                },
-                                                controller: _cityController,
-                                                autofocus: true,
-                                                decoration: InputDecoration(
-                                                    prefixIcon: Icon(
-                                                      Icons.search,
-                                                      color: _constants
-                                                          .primaryColor,
-                                                    ),
-                                                    suffixIcon: GestureDetector(
-                                                      onTap: () =>
-                                                          _cityController
-                                                              .clear(),
-                                                      child: Icon(
-                                                        Icons.close,
-                                                        color: _constants
-                                                            .primaryColor,
-                                                      ),
-                                                    ),
-                                                    hintText:
-                                                        'Search city e.g. London',
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color: _constants
-                                                            .primaryColor,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    )),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ));
-                            },
-                            icon: const Icon(
-                              Icons.search,
-                              color: Colors.white,
-                            ),
-                          ),
                         ],
                       ),
                       ClipRRect(
@@ -255,9 +184,9 @@ class _HomePageState extends State<Home> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => const CitiesMap()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      MapScreen(selectedCity: selectedCity)));
                             }),
                       ),
                     ],

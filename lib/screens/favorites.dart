@@ -129,7 +129,7 @@ class Favorites extends StatelessWidget {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const Text(
-                  "❤️ Favorites Places ❤️",
+                  "❤️ Favourite Places ❤️",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

@@ -9,7 +9,7 @@ class Settings extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Paramètres météo'),
+        title: const Text('Weather parameters'),
         backgroundColor: Colors.transparent,
       ),
       body: Container(
@@ -22,20 +22,20 @@ class Settings extends StatelessWidget {
             // ignore: prefer_const_literals_to_create_immutables
             children: <Widget>[
               const ListTile(
-                title: Text("Unité", style: TextStyle(color: Colors.white)),
+                title: Text("Unit", style: TextStyle(color: Colors.white)),
                 subtitle: Text("°C", style: TextStyle(color: Colors.blue)),
                 leading: Icon(Icons.thermostat, color: Colors.white),
               ),
               const ListTile(
-                title: Text("Utiliser position actuelle",
+                title: Text("Use current position",
                     style: TextStyle(color: Colors.white)),
                 subtitle: Text("Refuser", style: TextStyle(color: Colors.blue)),
                 leading: Icon(Icons.location_on, color: Colors.white),
               ),
               const ListTile(
-                title: Text("Actualisation automatique",
+                title: Text("Automatic update",
                     style: TextStyle(color: Colors.white)),
-                subtitle: Text("Toutes les 6 heures",
+                subtitle: Text("Every 6 hours",
                     style: TextStyle(color: Colors.blue)),
                 leading: Icon(Icons.refresh, color: Colors.white),
               ),
@@ -45,34 +45,34 @@ class Settings extends StatelessWidget {
                 leading: Icon(Icons.notifications, color: Colors.white),
               ),
               const ListTile(
-                title: Text("Alertes météos",
+                title: Text("Weather alerts",
                     style: TextStyle(color: Colors.white)),
                 subtitle: Text(
-                    "Recevez des alertes météo et des badges sur le widget Météo, dans l'application et sur l'écran latéral.",
+                    "Receive weather alerts and badges on the Weather widget, in the app and on the side screen.",
                     style: TextStyle(color: Colors.grey)),
                 leading: Icon(Icons.campaign, color: Colors.white),
                 trailing: Icon(Icons.toggle_on, color: Colors.white),
               ),
               const ListTile(
-                title: Text("Ajout de l'icône Météo",
+                title: Text("Adding the Weather icon",
                     style: TextStyle(color: Colors.white)),
-                subtitle: Text("Ajoutez l'icône Météo à l'écran Applis",
+                subtitle: Text("Add the Weather icon to the Apps screen",
                     style: TextStyle(color: Colors.grey)),
                 leading: Icon(Icons.sunny_snowing, color: Colors.white),
                 trailing: Icon(Icons.toggle_off, color: Colors.white),
               ),
               const ListTile(
-                title: Text("Service de personnalisation",
+                title: Text("Customisation service",
                     style: TextStyle(color: Colors.white)),
                 subtitle: Text(
-                    "Obtenez du contenu personnalisé basé sur l'utilisation de votre téléphone",
+                    "Get personalised content based on your phone's usage",
                     style: TextStyle(color: Colors.grey)),
                 leading: Icon(Icons.edit, color: Colors.white),
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 30),
                 child: ListTile(
-                  title: Text("A propos de l'application Météo",
+                  title: Text("About the Weather application",
                       style: TextStyle(color: Colors.white)),
                   leading: Icon(Icons.info, color: Colors.white),
                 ),
