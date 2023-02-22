@@ -17,31 +17,17 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Présentation du projet et des fonctionnalités
 
 
 
-### Built With
 
-* Flutter
-* Dart
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Réalisé avec ( + Version) :
+
+* Flutter (docs, dev, widget, etc.) => 3.3.4
+* Dart => 2.18.2
+* DevTools => 2.15.0
 
 
 
@@ -51,8 +37,8 @@ Use the `BLANK_README.md` to get started.
 Pour la réalisation de l'application "Weather_App", j'ai utilisé l'API "weatherapi.com" permettant de récupérer les données JSON d'une ville et de ses conditions météorologiques actuelles et futures.
 
 Exemple de requêtes :
-- Obtenir la liste des villes : 'https://api.weatherapi.com/v1/search.json?key=$apiKey&q=$query'
-- Obtenir la liste des conditions météorologiques : 'https://api.weatherapi.com/v1/forecast.json?key=$apikey&days=7&q='
+- Obtenir la liste des villes : https://api.weatherapi.com/v1/search.json?key=$apiKey&q=$query
+- Obtenir la liste des conditions météorologiques : https://api.weatherapi.com/v1/forecast.json?key=$apikey&days=7&q=
 
 Lien : 
   [Weatherapi](https://www.weatherapi.com/)
