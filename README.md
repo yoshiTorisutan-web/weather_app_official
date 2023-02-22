@@ -50,7 +50,7 @@ Use the `BLANK_README.md` to get started.
 
 Pour la réalisation de l'application "Weather_App", j'ai utilisé l'API "weatherapi.com" permettant de récupérer les données JSON d'une ville et de ses conditions météorologiques actuelles et futures.
 
-Lien : <a href="https://www.weatherapi.com/"></a>
+Lien : <p><a href="https://www.weatherapi.com/"></a></p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
