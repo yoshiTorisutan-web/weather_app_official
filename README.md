@@ -48,6 +48,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
+* [![Flutter][Flutter.dev]][Flutter-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
