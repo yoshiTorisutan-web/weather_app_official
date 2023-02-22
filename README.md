@@ -1,5 +1,6 @@
 <!-- PROJECT LOGO -->
 <h1 align="center">Weather_app</h1>
+<a href="weather_app_official/assets/logo_weather.png"></a>
 
 <!-- Présentation du projet -->
 # Présentation du projet
