@@ -96,7 +96,7 @@ class _DetailPageState extends State<DetailPage> {
         elevation: 0.0,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 40.0, top: 25.0),
+            padding: const EdgeInsets.only(right: 30.0, top: 25.0),
             child: IconButton(
                 onPressed: () {
                   showDialog(
@@ -138,9 +138,9 @@ class _DetailPageState extends State<DetailPage> {
         children: [
           Positioned(
             bottom: 0,
-            left: 0,
+            left: 10,
             child: Container(
-              height: size.height * .78,
+              height: size.height * .70,
               width: size.width,
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 34, 56, 69),
@@ -179,16 +179,16 @@ class _DetailPageState extends State<DetailPage> {
                         clipBehavior: Clip.none,
                         children: [
                           Positioned(
-                            width: 90,
+                            width: 110,
                             left: 40,
-                            top: 60,
+                            top: 30,
                             // ignore: prefer_interpolation_to_compose_strings
                             child: Image.asset("assets/" +
                                 getForecastWeather(0)["weatherIcon"]),
                           ),
                           Positioned(
-                              top: 165,
-                              left: 55,
+                              top: 150,
+                              left: 40,
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Text(

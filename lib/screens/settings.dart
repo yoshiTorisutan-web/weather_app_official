@@ -9,11 +9,17 @@ class Settings extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Weather parameters'),
+        title: const Text(
+          'Weather parameters',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Hubballi',
+              color: Colors.white),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-          padding: const EdgeInsets.only(top: 90),
+          padding: const EdgeInsets.only(top: 120),
           width: size.width,
           height: size.height,
           color: const Color(0xff081b25),
@@ -35,8 +41,8 @@ class Settings extends StatelessWidget {
               const ListTile(
                 title: Text("Automatic update",
                     style: TextStyle(color: Colors.white)),
-                subtitle: Text("Every 6 hours",
-                    style: TextStyle(color: Colors.blue)),
+                subtitle:
+                    Text("Every 6 hours", style: TextStyle(color: Colors.blue)),
                 leading: Icon(Icons.refresh, color: Colors.white),
               ),
               const ListTile(

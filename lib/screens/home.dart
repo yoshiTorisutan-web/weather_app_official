@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:weather_app/screens/map_cities.dart';
 import '../constants.dart';
+import '../models/weather_models.dart';
 import '../widgets/weather_item.dart';
 import 'favorites.dart';
 import 'forecast.dart';
@@ -20,29 +21,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomePageState extends State<Home> {
-  final TextEditingController _cityController = TextEditingController();
   final Constants _constants = Constants();
 
   // ignore: non_constant_identifier_names
-  static String API_KEY =
-      '9d54e695bf4b4803aee230828231202'; //Paste Your API Here
-
-  String location = 'Angers'; //Default location
-  String weatherIcon = 'heavycloudy.png';
-  int temperature = 0;
-  int windSpeed = 0;
-  int humidity = 0;
-  int cloud = 0;
-  String currentDate = '';
-
-  List hourlyWeatherForecast = [];
-  List dailyWeatherForecast = [];
-
-  String currentWeatherStatus = '';
-
-  //API Call
-  String searchWeatherAPI =
-      "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY&days=7&q=";
+  
 
   void fetchWeatherData(String selectedCity) async {
     try {
@@ -116,7 +98,7 @@ class _HomePageState extends State<Home> {
       body: Container(
         width: size.width,
         height: size.height,
-        padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
+        padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
         color: _constants.primaryColor.withOpacity(.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -268,7 +250,7 @@ class _HomePageState extends State<Home> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               height: size.height * .20,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -308,7 +290,7 @@ class _HomePageState extends State<Home> {
                     height: 15,
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 120,
                     child: ListView.builder(
                       itemCount: hourlyWeatherForecast.length,
                       scrollDirection: Axis.horizontal,

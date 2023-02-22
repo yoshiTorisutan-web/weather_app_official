@@ -9,7 +9,13 @@ class InfoFavorites extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Favourites places'),
+        title: const Text(
+          'Favourites places',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Hubballi',
+              color: Colors.white),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Container(
@@ -18,7 +24,7 @@ class InfoFavorites extends StatelessWidget {
           height: size.height,
           color: const Color(0xff081b25),
           child: const Padding(
-            padding: EdgeInsets.only(top: 10, left: 20),
+            padding: EdgeInsets.only(top: 30, left: 20),
             child: Text(
                 'Your favourite location will be used to provide weather information. You can change your favourite location in your list of locations.',
                 textAlign: TextAlign.left,

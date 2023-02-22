@@ -9,7 +9,13 @@ class Author extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Creator'),
+        title: const Text(
+          'Creator',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Hubballi',
+              color: Colors.white),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Container(

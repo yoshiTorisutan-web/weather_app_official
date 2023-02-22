@@ -1,30 +1,11 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:weather_app/screens/favorites.dart';
-
-String apiKey = '9d54e695bf4b4803aee230828231202';
-
-Future<List<String>> fetchCities(String query) async {
-  final url = Uri.parse(
-      'https://api.weatherapi.com/v1/search.json?key=$apiKey&q=$query');
-  final response = await http.get(url);
-
-  if (response.statusCode == 200) {
-    final data = jsonDecode(response.body) as List<dynamic>;
-    final cities = data
-        .map((city) => '${city['name']}, ${city['region']}, ${city['country']}')
-        .toList()
-        .cast<String>();
-    return cities;
-  } else {
-    throw Exception('Failed to load cities');
-  }
-}
+import '../models/cities_models.dart';
 
 class SearchCity extends StatefulWidget {
-  const SearchCity({super.key});
+  const SearchCity({super.key, required String selectedCity});
 
   @override
   State<SearchCity> createState() => _SearchCityState();
@@ -106,6 +87,7 @@ class _SearchCityState extends State<SearchCity> {
         ],
       ),
       body: Container(
+        padding: const EdgeInsets.only(top: 10),
         width: size.width,
         height: size.height,
         color: const Color(0xff081b25),
@@ -155,8 +137,9 @@ class _SearchCityState extends State<SearchCity> {
               ),
               Expanded(
                   child: Card(
-                shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.white, width: 2)),
+                shape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(10.0)),
                 elevation: 0,
                 color: const Color.fromARGB(61, 255, 255, 255),
                 margin: const EdgeInsets.only(
@@ -179,7 +162,11 @@ class _SearchCityState extends State<SearchCity> {
                           style: const TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
                               fontSize: 12)),
-                      onTap: () {
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setString('selectedCity', cityName);
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,
                           MaterialPageRoute(

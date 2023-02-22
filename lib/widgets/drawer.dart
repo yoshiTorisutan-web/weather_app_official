@@ -14,7 +14,7 @@ class MainDrawer extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 50.0, bottom: 30.0),
+              padding: const EdgeInsets.only(top: 100.0, bottom: 30.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,13 +84,20 @@ class MainDrawer extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Author()));
               },
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 350),
-              child: Image.asset(
-                'assets/logo_mds.png',
-                width: 75,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    child: Image.asset(
+                      'assets/logo_mds.png',
+                      width: 75,
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ));
   }

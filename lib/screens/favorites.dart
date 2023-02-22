@@ -1,12 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/drawer.dart';
 import 'add_city.dart';
 import 'home.dart';
 
-class Favorites extends StatelessWidget {
+class Favorites extends StatefulWidget {
+  const Favorites({super.key, required this.selectedCity});
+
   final String selectedCity;
 
-  const Favorites({Key? key, required this.selectedCity}) : super(key: key);
+  @override
+  State<Favorites> createState() => _FavoritesState();
+}
+
+class _FavoritesState extends State<Favorites> {
+  String selectedCity = '';
+
+
+  @override
+  void initState() {
+    super.initState();
+    getSelectedCity();
+  }
+
+  Future<void> getSelectedCity() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String selectedCity = prefs.getString('selectedCity') ?? '';
+    setState(() {
+      this.selectedCity = selectedCity;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +67,10 @@ class Favorites extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(20.0),
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SearchCity()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SearchCity(
+                        selectedCity: '',
+                      )));
             },
           )
         ],
@@ -80,9 +105,9 @@ class Favorites extends StatelessWidget {
                 clipBehavior: Clip.none,
                 children: [
                   Positioned(
-                    width: 70,
-                    left: 30,
-                    top: 40,
+                    width: 90,
+                    left: 35,
+                    top: 30,
                     // ignore: prefer_interpolation_to_compose_strings
                     child: Image.asset(image),
                   ),
