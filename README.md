@@ -1,6 +1,14 @@
 <!-- PROJECT LOGO -->
 <h1 align="center">Weather_app</h1>
-<img src="assets/logo_weather.png" alt="Logo" width="80" height="80" align="middle">
+<img src="assets/logo_weather.png" alt="Logo" width="80" height="80" class="center">
+
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
 
 <!-- Présentation du projet -->
 # Présentation du projet
