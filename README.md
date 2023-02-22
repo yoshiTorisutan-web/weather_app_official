@@ -1,6 +1,3 @@
-# weather_app_official
-
-
 <!-- PROJECT LOGO -->
 <h3 align="center">Weather_app</h3>
 
