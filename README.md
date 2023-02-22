@@ -14,7 +14,7 @@ Elle reprend l'exemple de nombreuses applications météo présentes sur tous le
 
 # Présentation des fonctionnalités
 
-<u>Page d'accueil :</u>
+<p><u>Page d'accueil :</u></p>
   - Page d'accueil pour accéder à l'application
 
 Page des favoris :
