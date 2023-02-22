@@ -2,23 +2,13 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Weather_app</h3>
-
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-  </p>
-</div>
-
+<h3 align="center">Weather_app</h3>
 
 <!-- Présentation du projet -->
 # Présentation du projet
 
+Application météo permettant de consulter les conditions météorologiques actuelles et futures d'une ville en utilisant une API météo. 
+Elle reprend l'exemple de nombreuses applications météo présentes sur tous les téléphones actuelles.
 
 
 # Présentation des fonctionnalités
