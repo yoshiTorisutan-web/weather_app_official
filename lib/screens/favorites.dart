@@ -16,7 +16,6 @@ class Favorites extends StatefulWidget {
 class _FavoritesState extends State<Favorites> {
   String selectedCity = '';
 
-
   @override
   void initState() {
     super.initState();
@@ -37,6 +36,12 @@ class _FavoritesState extends State<Favorites> {
 
     final now = TimeOfDay.now();
     String image;
+
+    List<String> defaultCities = ['New York', 'Paris', 'Tokyo'];
+    List<String> cities = <String>[...defaultCities];
+    if (selectedCity.isNotEmpty) {
+      cities.add(selectedCity);
+    }
 
     if (now.hour >= 0 && now.hour < 6) {
       image = "assets/pleine-lune.png";
@@ -166,7 +171,7 @@ class _FavoritesState extends State<Favorites> {
             ),
           ),
           ListView.builder(
-            itemCount: 1,
+            itemCount: cities.length,
             padding: const EdgeInsets.only(top: 240),
             itemBuilder: (BuildContext context, int index) {
               return Card(
@@ -174,7 +179,7 @@ class _FavoritesState extends State<Favorites> {
                 elevation: 5,
                 margin: const EdgeInsets.only(
                     top: 10, left: 30, right: 30, bottom: 10),
-                child: selectedCity.isEmpty
+                child: cities[index].isEmpty
                     ? Container()
                     : ListTile(
                         shape: RoundedRectangleBorder(
@@ -186,7 +191,7 @@ class _FavoritesState extends State<Favorites> {
                             child: Icon(Icons.location_on,
                                 color: Color.fromARGB(255, 254, 254, 254))),
                         title: Text(
-                          selectedCity,
+                          cities[index],
                           style: const TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 20,
@@ -200,7 +205,7 @@ class _FavoritesState extends State<Favorites> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Home(
-                                            selectedCity: selectedCity,
+                                            selectedCity: cities[index],
                                           ))); // Navigue vers la page WeatherPage
                             },
                             icon: const Icon(Icons.chevron_right,
@@ -214,9 +219,37 @@ class _FavoritesState extends State<Favorites> {
       ),
       drawer: const Drawer(child: MainDrawer()),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Favourite city information',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                            fontFamily: 'Hubballi')),
+                    content: const Text(
+                        'You will find here all the cities added by default by the application and added by you as you wish.',
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontFamily: 'Hubballi',
+                            fontSize: 20)),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Understood'),
+                        child: const Text(
+                          'Understood',
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontFamily: 'Hubballi',
+                              fontSize: 19),
+                        ),
+                      ),
+                    ],
+                  ));
+        },
         backgroundColor: Colors.white,
-        child: const Icon(Icons.delete, color: Color(0xff081b25)),
+        child: const Icon(Icons.info, color: Color(0xff081b25)),
       ),
     );
   }

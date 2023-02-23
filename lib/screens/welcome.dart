@@ -23,6 +23,51 @@ class Start extends StatelessWidget {
                 'assets/logo_weather.png',
                 width: 250,
               ),
+              const SizedBox(height: 40),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Discover the Weather',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Hubballi',
+                    ),
+                  ),
+                  Text(
+                    'in Your City',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Hubballi',
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  Text(
+                    'Find out about the current and',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Hubballi',
+                    ),
+                  ),
+                  Text(
+                    'future weather in your city.',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Hubballi',
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                ],
+              ),
               const SizedBox(
                 height: 60,
               ),
@@ -65,14 +110,16 @@ class Start extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    return const Favorites(selectedCity: '',);
+                                    return const Favorites(
+                                      selectedCity: '',
+                                    );
                                   }
                                 },
                               )));
                 },
                 child: Container(
                   height: 50,
-                  width: size.width * 0.4,
+                  width: size.width * 0.6,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                         colors: [Color(0xff2F80ED), Color(0xff56CCF2)],
@@ -83,7 +130,7 @@ class Start extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      'Enter',
+                      'Get started',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
