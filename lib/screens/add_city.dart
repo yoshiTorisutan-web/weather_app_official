@@ -33,10 +33,16 @@ class _SearchCityState extends State<SearchCity> {
           _isListening = true;
         });
         _speech.listen(
-          onResult: (result) => setState(() {
-            _text = result.recognizedWords;
-            _searchController.text = _text;
-          }),
+          onResult: (result) {
+            setState(() {
+              _text = result.recognizedWords;
+              _searchController.text = _text;
+              fetchCities(_text).then((cities) {
+                _cities = cities;
+                setState(() {});
+              });
+            });
+          },
         );
       }
     }
