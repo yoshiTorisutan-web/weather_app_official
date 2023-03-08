@@ -180,6 +180,10 @@ class _SearchCityState extends State<SearchCity> {
                                 Favorites(selectedCity: cityName),
                           ),
                         );
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Entreprise ajouté ✅'), backgroundColor: Colors.green),
+                        );
                       },
                     );
                   },

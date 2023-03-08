@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../constants.dart';
 import '../widgets/weather_item.dart';
-import 'home.dart';
+import 'weather_details.dart';
 
 class DetailPage extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -62,7 +62,7 @@ class _DetailPageState extends State<DetailPage> {
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.of(context)
-                  .pop(MaterialPageRoute(builder: (context) => const Home(selectedCity: '')));
+                  .pop(MaterialPageRoute(builder: (context) => const WeatherDetails(selectedCity: '')));
             },
           ),
         ),
