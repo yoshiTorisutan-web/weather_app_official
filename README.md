@@ -75,7 +75,8 @@ Page données prévisions météos futurs :
 * geocoding: ^2.0.1
 * provider: ^6.0.5
 
-
+# Polices (+ Version) :
+* family : Hubballi => assets/fonts/Hubballi-Regular.ttf
 
 <!-- API utilisées -->
 # API utilisées
