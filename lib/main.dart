@@ -7,10 +7,16 @@ import 'package:weather_app/screens/forecast.dart';
 import 'package:weather_app/screens/weather_details.dart';
 import 'package:weather_app/screens/map_cities.dart';
 
+import 'blocs/theme.dart';
 import 'screens/welcome.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
