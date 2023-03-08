@@ -53,8 +53,8 @@ Page données prévisions météos futurs :
 * Flutter (docs, dev, widget, etc.) => 3.3.4
 * Dart => 2.18.2
 * DevTools => 2.15.0
-* SharedPreferences
-* Bloc/Provider
+* SharedPreferences => 2.0.15
+* Bloc/Provider => 6.0.5
 
 
 
