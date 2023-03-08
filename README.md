@@ -48,11 +48,13 @@ Page données prévisions météos futurs :
 
 
 <!-- Réalisé -->
-# Réalisé avec ( + Version) (+ Packages) :
+# Réalisé avec ( + Version) :
 
 * Flutter (docs, dev, widget, etc.) => 3.3.4
 * Dart: 2.18.2
 * DevTools: 2.15.0
+
+# Packages (+ Version) :
 * SharedPreferences: 2.0.15
 * Bloc/Provider: 6.0.5
 * cupertino_icons: ^1.0.2
