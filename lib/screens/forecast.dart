@@ -259,7 +259,8 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           Positioned(
                             top: 340,
-                            left: 0,
+                            right: 5,
+                            left: 5,
                             child: SizedBox(
                               height: 400,
                               width: size.width * .9,

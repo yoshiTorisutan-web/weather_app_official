@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather_app/blocs/default_cities.dart';
 import '../blocs/theme.dart';
 import '../widgets/drawer.dart';
 import 'add_city.dart';
@@ -118,7 +117,7 @@ class _FavoritesState extends State<Favorites> {
                   children: [
                     Positioned(
                       top: 20,
-                      right: 30,
+                      right: 20,
                       left: 20,
                       child: Container(
                         height: 150,
