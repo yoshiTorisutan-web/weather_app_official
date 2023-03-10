@@ -267,6 +267,7 @@ class _DetailPageState extends State<DetailPage> {
                                 physics: const BouncingScrollPhysics(),
                                 children: [
                                   Card(
+                                    color: Colors.white,
                                     elevation: 3.0,
                                     margin: const EdgeInsets.only(bottom: 20),
                                     child: Padding(
@@ -413,6 +414,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ),
                                   Card(
+                                    color: Colors.white,
                                     elevation: 3.0,
                                     margin: const EdgeInsets.only(bottom: 20),
                                     child: Padding(
@@ -559,6 +561,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ),
                                   Card(
+                                    color: Colors.white,
                                     elevation: 3.0,
                                     margin: const EdgeInsets.only(bottom: 20),
                                     child: Padding(
